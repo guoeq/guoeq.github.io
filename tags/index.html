@@ -117,7 +117,7 @@
                         
                             <li><a href="/">博客首页</a></li>
                         
-                            <li><a href="/archives">作品展示</a></li>
+                            <li><a href="/archives">所有文章</a></li>
                         
                             <li><a href="/tags">标签云</a></li>
                         
@@ -141,7 +141,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/一键部署/" style="font-size: 10px;">一键部署</a>
+                        <li><a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a></li> <li><a href="/tags/一键部署/" style="font-size: 10px;">一键部署</a></li>
                     </div>
                 </section>
                 
@@ -194,7 +194,7 @@
                 
                     <li><a href="/">博客首页</a></li>
                 
-                    <li><a href="/archives">作品展示</a></li>
+                    <li><a href="/archives">所有文章</a></li>
                 
                     <li><a href="/tags">标签云</a></li>
                 
@@ -250,112 +250,101 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          
-              <style>
+        
+      
+      
+        <hr>
+<br>
+
+
+<script src="/js/tagcanvas.js" type="text/javascript"></script>
+
+<div class="tags" id="myTags">
+ <canvas width="350" height="350" id="my3DTags">
+    <p>Anything in here will be replaced on browsers that support the canvas element</p>
+</canvas>
+</div>
+<div class="tags" id="tags">
+ <ul>
+  <li><a href="/tags/jenkins/" style="font-size: 16px; color: #00f">jenkins</a></li> <li><a href="/tags/一键部署/" style="font-size: 16px; color: #00f">一键部署</a></li>
+ </ul>
+</div>
+<style type="text/css">
+    .category-list li, .tags li{
+        display: inline;
+        font-size: 1.2em;
+        margin-right: 1em;
+        line-height: 60px;
+        border: 1px solid lightgray;
+        padding: 6px;
+    }
+    .category-list a {
+        color: gray;
+    }
+    .category-list:hover a {
+        color: gray;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .category-list-count {
+        margin-left: 2px;
+        font-size: .9em;
+    }
+    .article-entry ul li:before{
+        display: none;
+    }
+    .article-inner  {
+        text-align: center;
+    }
     .article-meta {
         display: none;
+    }
+    .article-header {
+        padding-right: 35px;
     }
     #container .article .article-title {
         padding-right: 0;
     }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
+    .tags {
+        max-width: 40em;
+        margin: 2em auto;
+        margin-top: 0em;
     }
-    .article-header:hover {
-        border-left: none;
+    .tags a {
+        margin-right: 1em;
+        line-height: 65px;
+        border-bottom: 1px solid gray;
     }
-    .article-title {
-        font-size: 1.6em
+    .tags a:hover {
+        font-weight: bold;
+        text-decoration: none;
     }
-    .article-meta {
+    .category-list-child {
         display: none;
-    }
-    .article-entry hr {
-        margin: 0;
-    }
-    #container .article-info-post.article-info {
-      display: none;
-      }
-    #container .article .article-title {
-    padding: 0;
     }
 </style>
 
-
-    <!-- Tag Cloud Page -->
-    <hr>
-    <br>
-    
-
-    <p class="count"></p>
-
-    <div class="tags">
-        <a href="/tags/jenkins/" style="font-size: 16px; color: #808080">jenkins</a> <a href="/tags/一键部署/" style="font-size: 16px; color: #808080">一键部署</a>
-    </div>
-    <style>
-        .category-list li{
-            display: inline-block;
-            margin: 0 1em .5em 0;
-            padding: 4px;
-            border: 1px solid lightgray;
-            font-size: 1.2em;
+    <script type="text/javascript">
+      window.onload = function() {
+        try {
+          TagCanvas.Start('my3DTags','tags',{
+            textFont: 'Georgia,Optima',
+            textColour: null,
+            outlineColour: '#ff00ff',
+            weight: true,
+            reverse: true,
+            depth: 0.8,
+            maxSpeed: 0.05,
+            bgRadius: 1,
+            freezeDecel: true
+          });
+        } catch(e) {
+          // something went wrong, hide the canvas container
+          document.getElementById('myTags').style.display = 'none';
         }
-        .category-list a {
-            color: gray;
-        }
-        .category-list-item:hover a {
-            color: gray;
-            text-decoration: none;
-        }
-        .category-list-count {
-            margin-left: 2px;
-            font-size: .9em;
-        }
-        .article-entry ul li:before{
-            display: none;
-        }
-        .article-inner  {
-            text-align: center;
-        }
-        .tags {
-            max-width: 40em;
-            margin: 2em auto;
-            margin-top: 0em;
-        }
-        .tags a {
-            margin-right: 1em;
-            line-height: 65px;
-            border-bottom: 1px solid gray;
-            white-space: nowrap;
-        }
-        .tags a:hover {
-            border-bottom: 2px solid black;
-            text-decoration: none;
-            font-style: italic;
-        }
-        #count > span {
-            margin: auto .2em;
-            font-weight: bold;
-        }
-    </style>
-
-    <!-- Count tags and categories -->
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-    <p id="count">
-            已有<span><script>document.write($(".category-list-item").length)</script></span>个分类，
-            共计<span><script>document.write($(".tags > a").length)</script></span>个标签。
-    </p>
-    <script>
-        $('#count').appendTo('.count');
+      };
     </script>
 
-
-
-          
-        
       
     </div>
     
@@ -438,6 +427,7 @@
     <script>
         
     </script>
+
 </div>
       <footer id="footer">
     <div class="outer">
