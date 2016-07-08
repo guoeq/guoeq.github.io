@@ -143,7 +143,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <li><a href="/tags/Java/" style="font-size: 10px;">Java</a></li> <li><a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a></li> <li><a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a></li> <li><a href="/tags/一键部署/" style="font-size: 10px;">一键部署</a></li> <li><a href="/tags/并发编程/" style="font-size: 10px;">并发编程</a></li> <li><a href="/tags/开发规范/" style="font-size: 10px;">开发规范</a></li>
+                        <li><a href="/tags/Java/" style="font-size: 10px;">Java</a></li> <li><a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a></li> <li><a href="/tags/java/" style="font-size: 20px;">java</a></li> <li><a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a></li> <li><a href="/tags/一键部署/" style="font-size: 10px;">一键部署</a></li> <li><a href="/tags/分页/" style="font-size: 10px;">分页</a></li> <li><a href="/tags/并发编程/" style="font-size: 10px;">并发编程</a></li> <li><a href="/tags/开发规范/" style="font-size: 10px;">开发规范</a></li> <li><a href="/tags/时间加减/" style="font-size: 10px;">时间加减</a></li>
                     </div>
                 </section>
                 
@@ -221,11 +221,71 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-java如何实现时间的加减" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/08/java如何实现时间的加减/" class="article-date">
+      <time datetime="2016-07-08T07:05:00.000Z" itemprop="datePublished">2016-07-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/08/java如何实现时间的加减/">java如何实现时间的加减</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>话不多说,直接上代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">import java.text.SimpleDateFormat;</div><div class="line">import java.util.Calendar;</div><div class="line">import java.util.Date;</div><div class="line"></div><div class="line">public class Test &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) throws Exception &#123;</div><div class="line"></div><div class="line">		SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-mm-dd&quot;);</div><div class="line">		String str = new SimpleDateFormat(&quot;yyyy-mm-dd&quot;).format(new Date());</div><div class="line">		Date dt = sdf.parse(str);</div><div class="line">		Calendar rightNow = Calendar.getInstance();</div><div class="line">		rightNow.setTime(dt);</div><div class="line">		rightNow.add(Calendar.YEAR, -1);// 日期减1年</div><div class="line">		rightNow.add(Calendar.MONTH, 3);// 日期加3个月</div><div class="line">		rightNow.add(Calendar.DAY_OF_YEAR, 10);// 日期加10天</div><div class="line">		Date dt1 = rightNow.getTime();</div><div class="line">		String reStr = sdf.format(dt1);</div><div class="line">		System.out.println(reStr);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/时间加减/">时间加减</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-分页模型的分析" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2016/07/08/分页模型的分析/" class="article-date">
-      <time datetime="2016-07-08T07:02:32.000Z" itemprop="datePublished">2016-07-08</time>
+      <time datetime="2016-07-08T07:02:00.000Z" itemprop="datePublished">2016-07-08</time>
 </a>
     </div>
   
@@ -291,6 +351,10 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
       
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分页/">分页</a></li></ul>
+    </div>
+
       
       <div class="clearfix"></div>
     </div>
