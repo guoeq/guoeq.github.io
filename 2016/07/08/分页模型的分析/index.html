@@ -3,18 +3,52 @@
 <head>
   <meta charset="utf-8">
   
-  <title>MySql开发规范 | Ryan&#39;s Blog</title>
+  <title>分页模型的分析 | Ryan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="figure.swipe{display:block;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}figure.swipe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}">
+  <meta name="description" content="Why Page?我们为什么要做分页？
+1.前台页面有限，我们无法将所有的数据一次性显示。
+2.数据库中的数据太多，一次性查询时间较长，影响性能。
+What we want?
+
+
+分析模型
+是不是和你想的一样呢？做成这个东东我们需要哪些条件呢？
+1.我们需要定义一页显示多少条数据，在这里定义为pageSize。
+2.我们需要知道要显示第几页的数据，在这里定义为pageNumber。
+3.我们需要定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySql开发规范">
-<meta property="og:url" content="https://guoeq.github.io/2016/07/07/MySql开发规范/index.html">
+<meta property="og:title" content="分页模型的分析">
+<meta property="og:url" content="https://guoeq.github.io/2016/07/08/分页模型的分析/index.html">
 <meta property="og:site_name" content="Ryan's Blog">
-<meta property="og:description" content="figure.swipe{display:block;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}figure.swipe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}">
-<meta property="og:updated_time" content="2016-07-07T08:01:38.000Z">
+<meta property="og:description" content="Why Page?我们为什么要做分页？
+1.前台页面有限，我们无法将所有的数据一次性显示。
+2.数据库中的数据太多，一次性查询时间较长，影响性能。
+What we want?
+
+
+分析模型
+是不是和你想的一样呢？做成这个东东我们需要哪些条件呢？
+1.我们需要定义一页显示多少条数据，在这里定义为pageSize。
+2.我们需要知道要显示第几页的数据，在这里定义为pageNumber。
+3.我们需要定">
+<meta property="og:image" content="http://img.blog.csdn.net/20150825175639518">
+<meta property="og:image" content="http://img.blog.csdn.net/20150825175838214">
+<meta property="og:image" content="http://img.blog.csdn.net/20150825175903087">
+<meta property="og:updated_time" content="2016-07-08T07:02:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySql开发规范">
-<meta name="twitter:description" content="figure.swipe{display:block;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}figure.swipe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}">
+<meta name="twitter:title" content="分页模型的分析">
+<meta name="twitter:description" content="Why Page?我们为什么要做分页？
+1.前台页面有限，我们无法将所有的数据一次性显示。
+2.数据库中的数据太多，一次性查询时间较长，影响性能。
+What we want?
+
+
+分析模型
+是不是和你想的一样呢？做成这个东东我们需要哪些条件呢？
+1.我们需要定义一页显示多少条数据，在这里定义为pageSize。
+2.我们需要知道要显示第几页的数据，在这里定义为pageNumber。
+3.我们需要定">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20150825175639518">
   
     <link rel="alternative" href="/atom.xml" title="Ryan&#39;s Blog" type="application/atom+xml">
   
@@ -220,11 +254,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-MySql开发规范" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-分页模型的分析" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/07/MySql开发规范/" class="article-date">
-      <time datetime="2016-07-07T06:13:00.000Z" itemprop="datePublished">2016-07-07</time>
+      <a href="/2016/07/08/分页模型的分析/" class="article-date">
+      <time datetime="2016-07-08T07:02:32.000Z" itemprop="datePublished">2016-07-08</time>
 </a>
     </div>
   
@@ -237,7 +271,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MySql开发规范
+      分页模型的分析
     </h1>
   
 
@@ -245,23 +279,48 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/编程/">编程</a>
-    </div>
-
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发规范/">开发规范</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><figure class="swipe"><iframe src="https://www.swipe.to/embed/6724r" allowfullscreen></iframe></figure><style>figure.swipe{display:block;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}figure.swipe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}</style></p>
+        <h2 id="Why-Page"><a href="#Why-Page" class="headerlink" title="Why Page?"></a>Why Page?</h2><pre><code>我们为什么要做分页？
+1.前台页面有限，我们无法将所有的数据一次性显示。
+2.数据库中的数据太多，一次性查询时间较长，影响性能。
+</code></pre><h2 id="What-we-want"><a href="#What-we-want" class="headerlink" title="What we want?"></a>What we want?</h2><p><img src="http://img.blog.csdn.net/20150825175639518" alt="页数少的分页"></p>
+<p><img src="http://img.blog.csdn.net/20150825175838214" alt="一到十分页"></p>
+<p><img src="http://img.blog.csdn.net/20150825175903087" alt="n1,n1+10分页"></p>
+<p><strong>分析模型</strong></p>
+<pre><code>是不是和你想的一样呢？做成这个东东我们需要哪些条件呢？
+1.我们需要定义一页显示多少条数据，在这里定义为pageSize。
+2.我们需要知道要显示第几页的数据，在这里定义为pageNumber。
+3.我们需要定义显示页数范围的大小，在这里定义为rangeSize。
+    （上图中rangeSize为10）
+4.我们需要动态的得到具体显示页数的值，在这里定义为  List&lt;Integer&gt;  pages&lt;Integer&gt;。
+    （图一为1-4，图二为1-10，图三为5-14）
+5.如何得到pages&lt;Integer&gt;？细想一下，我们只需要知道开始页和结束页，然后将他们范围内的数进行遍历就可以了对吧。
+6.开始页如何得到？（开始页：pageStart）
+    最容易的就是图三，pageStart=pageNumber-rangeSize/2;
+    还算容易的就是图一，那就是1。
+    其实图二也很容易，也是1嘛。原因就是pageNumber&lt;rangeSize/2;
+    发现一个规律，(pageNubmer&lt;rangeSize/2)?(pageStart=1):(pageStart=pageNumber-rangSize/2)
+    用一种简单的方式表示就是pageStart=Max(0,(pageNumber-rangeSize/2))
+7.结束页如何得到?(结束页：pageEnd,数据的总条数count)
+    还是图三比较容易，pageEnd3=pageNumber+rangeSize/2-1;
+    这次图二也比较明显，pageEnd2=rangeSize;
+    图一也挺容易，pageEnd1=count/pageSize;
+    分析一下这三者的关系，pageEnd2与pageEnd3取其大，pageEnd1与pageEnd2和pageEnd3，取其小。
+    所以，
+    pageEnd=min(pageEnd1,max(pageEnd3,pageEnd2))
+    也就是        pageEnd=min(count/pageSize,max(pageNumber+rangeSize/2-1,count/pageSize))
+8.从7点我们可以看出我们来需要得到总的数据条数count；
+</code></pre><h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public Integer rangeSize=10;</div><div class="line">public Integer pageSize=10;</div><div class="line">/**</div><div class="line"> * 计算连续显示页的起始页码</div><div class="line"> */</div><div class="line">public int getPageNumberStart(Integer pageNumber) &#123;</div><div class="line">	return Math.max(0, pageNumber - rangeSize / 2);</div><div class="line">&#125;</div><div class="line">/**</div><div class="line"> * 计算连续显示页的结束页码</div><div class="line"> */</div><div class="line">public int getPageNumberEnd(Integer pageNumber,Integer count) &#123;</div><div class="line">	return Math.min(Math.max(pageNumber + rangeSize / 2 - 1,rangeSize),count/pageSize);</div><div class="line">&#125;</div><div class="line">/**</div><div class="line"> * 获得连续显示页的页码</div><div class="line"> */</div><div class="line">public List&lt;Integer&gt; getPages(Integer pageNumber,Integer count) &#123;</div><div class="line">	Integer startPage = this.getPageNumberStart(pageNumber);</div><div class="line">	Integer endPage = this.getPageNumberEnd(pageNumber,count);</div><div class="line">	List&lt;Integer&gt; pages = new ArrayList&lt;Integer&gt;();</div><div class="line">	for (int i = startPage + 1; i &lt;= endPage + 1; i++) &#123;</div><div class="line">		pages.add(i);</div><div class="line">	&#125;</div><div class="line">	return pages;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>此外就是页面数据的查询，根据不同的数据库有不同的查询方式，但是最好使用一种通用的不区别数据的接口。
+JPA提供的接口是十分方便的，几乎不需要我们做工作，只需要套用JPA的接口就可以了。
+</code></pre><p>详细请看JPA的文档。<br><a href="http://docs.spring.io/spring-data/jpa/docs/1.8.2.RELEASE/reference/html/%20JPA%E6%96%87%E6%A1%A3" target="_blank" rel="external">JPA官方文档</a></p>
 
       
       
@@ -271,13 +330,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/07/07/MySql开发规范/">MySql开发规范</a></p>
+        <p><span>本文标题:</span><a href="/2016/07/08/分页模型的分析/">分页模型的分析</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Ryan 的个人博客">Ryan</a></p>
-        <p><span>发布时间:</span>2016年07月07日 - 14时13分</p>
-        <p><span>最后更新:</span>2016年07月07日 - 16时01分</p>
+        <p><span>发布时间:</span>2016年07月08日 - 15时02分</p>
+        <p><span>最后更新:</span>2016年07月08日 - 15时02分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/07/07/MySql开发规范/" title="MySql开发规范">https://guoeq.github.io/2016/07/07/MySql开发规范/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://guoeq.github.io/2016/07/07/MySql开发规范/　　作者: Ryan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/08/分页模型的分析/" title="分页模型的分析">https://guoeq.github.io/2016/07/08/分页模型的分析/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://guoeq.github.io/2016/07/08/分页模型的分析/　　作者: Ryan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -290,18 +349,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/07/07/Java并发编程之ConcurrentHashMap/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Java并发编程之ConcurrentHashMap
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/05/jenkins一键部署快照/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jenkins一键部署快照</div>
+    <a href="/2016/07/07/Java并发编程之ConcurrentHashMap/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java并发编程之ConcurrentHashMap</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -313,7 +363,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Page"><span class="toc-number">1.</span> <span class="toc-text">Why Page?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-we-want"><span class="toc-number">2.</span> <span class="toc-text">What we want?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How"><span class="toc-number">3.</span> <span class="toc-text">How</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -408,7 +458,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/07/07/MySql开发规范/" data-title="MySql开发规范" data-url="https://guoeq.github.io/2016/07/07/MySql开发规范/"></div>
+    <div class="ds-thread" data-thread-key="2016/07/08/分页模型的分析/" data-title="分页模型的分析" data-url="https://guoeq.github.io/2016/07/08/分页模型的分析/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -431,13 +481,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/07/07/Java并发编程之ConcurrentHashMap/" title="上一篇: Java并发编程之ConcurrentHashMap">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2016/07/05/jenkins一键部署快照/" title="下一篇: jenkins一键部署快照">
+            <a href="/2016/07/07/Java并发编程之ConcurrentHashMap/" title="下一篇: Java并发编程之ConcurrentHashMap">
                 <i class="fa fa-angle-right"></i>
             </a>
         
