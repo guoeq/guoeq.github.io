@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ryan_qian.coding.me/"/>
-  <updated>2016-07-11T08:22:12.000Z</updated>
+  <updated>2016-07-11T11:38:56.000Z</updated>
   <id>http://ryan_qian.coding.me/</id>
   
   <author>
@@ -20,15 +20,15 @@
     <link href="http://ryan_qian.coding.me/2016/07/08/java%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%97%B6%E9%97%B4%E7%9A%84%E5%8A%A0%E5%87%8F/"/>
     <id>http://ryan_qian.coding.me/2016/07/08/java如何实现时间的加减/</id>
     <published>2016-07-08T07:05:00.000Z</published>
-    <updated>2016-07-11T08:22:12.000Z</updated>
+    <updated>2016-07-11T11:38:56.000Z</updated>
     
-    <content type="html">&lt;p&gt;话不多说,直接上代码&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.text.SimpleDateFormat;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.Calendar;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.Date;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Test&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		SimpleDateFormat sdf = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; SimpleDateFormat(&lt;span class=&quot;string&quot;&gt;&quot;yyyy-mm-dd&quot;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		String str = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; SimpleDateFormat(&lt;span class=&quot;string&quot;&gt;&quot;yyyy-mm-dd&quot;&lt;/span&gt;).format(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Date());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		Date dt = sdf.parse(str);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		Calendar rightNow = Calendar.getInstance();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		rightNow.setTime(dt);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		rightNow.add(Calendar.YEAR, -&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;// 日期减1年&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		rightNow.add(Calendar.MONTH, &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;// 日期加3个月&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		rightNow.add(Calendar.DAY_OF_YEAR, &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;// 日期加10天&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		Date dt1 = rightNow.getTime();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		String reStr = sdf.format(dt1);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		System.out.println(reStr);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    <content type="html">&lt;p&gt;话不多说,直接上代码&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.text.SimpleDateFormat;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.Calendar;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.Date;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Test&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		SimpleDateFormat sdf = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; SimpleDateFormat(&lt;span class=&quot;string&quot;&gt;&quot;yyyy-mm-dd&quot;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		String str = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; SimpleDateFormat(&lt;span class=&quot;string&quot;&gt;&quot;yyyy-mm-dd&quot;&lt;/span&gt;).format(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Date());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		Date dt = sdf.parse(str);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		Calendar rightNow = Calendar.getInstance();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		rightNow.setTime(dt);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		rightNow.add(Calendar.YEAR, -&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;// 日期减1年&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		rightNow.add(Calendar.MONTH, &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;// 日期加3个月&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		rightNow.add(Calendar.DAY_OF_YEAR, &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;// 日期加10天&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		Date dt1 = rightNow.getTime();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		String reStr = sdf.format(dt1);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		System.out.println(reStr);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
     
     <summary type="html">
     
-      &lt;p&gt;话不多说,直接上代码&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div c
+      &lt;p&gt;话不多说,直接上代码&lt;br&gt;
     
     </summary>
     
@@ -46,12 +46,13 @@
     <link href="http://ryan_qian.coding.me/2016/07/08/%E5%88%86%E9%A1%B5%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E6%9E%90/"/>
     <id>http://ryan_qian.coding.me/2016/07/08/分页模型的分析/</id>
     <published>2016-07-08T07:02:00.000Z</published>
-    <updated>2016-07-11T08:23:40.000Z</updated>
+    <updated>2016-07-11T11:39:29.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;Why-Page&quot;&gt;&lt;a href=&quot;#Why-Page&quot; class=&quot;headerlink&quot; title=&quot;Why Page?&quot;&gt;&lt;/a&gt;Why Page?&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;我们为什么要做分页？
 1.前台页面有限，我们无法将所有的数据一次性显示。
 2.数据库中的数据太多，一次性查询时间较长，影响性能。
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;What-we-want&quot;&gt;&lt;a href=&quot;#What-we-want&quot; class=&quot;headerlink&quot; title=&quot;What we want?&quot;&gt;&lt;/a&gt;What we want?&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150825175639518&quot; alt=&quot;页数少的分页&quot;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;What-we-want&quot;&gt;&lt;a href=&quot;#What-we-want&quot; class=&quot;headerlink&quot; title=&quot;What we want?&quot;&gt;&lt;/a&gt;What we want?&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150825175639518&quot; alt=&quot;页数少的分页&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150825175838214&quot; alt=&quot;一到十分页&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150825175903087&quot; alt=&quot;n1,n1+10分页&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;分析模型&lt;/strong&gt;&lt;/p&gt;
@@ -88,6 +89,8 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
     
       &lt;h2 id=&quot;Why-Page&quot;&gt;&lt;a href=&quot;#Why-Page&quot; class=&quot;headerlink&quot; title=&quot;Why Page?&quot;&gt;&lt;/a&gt;Why Page?&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;我们为什么要做分页？
 1.前台页面有限，我们无法将所有的数据一次性显示。
+2.数据库中的数据太多，一次性查询时间较长，影响性能。
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
@@ -127,14 +130,16 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
     <link href="http://ryan_qian.coding.me/2016/07/07/MySql%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
     <id>http://ryan_qian.coding.me/2016/07/07/MySql开发规范/</id>
     <published>2016-07-07T06:13:00.000Z</published>
-    <updated>2016-07-07T08:01:38.000Z</updated>
+    <updated>2016-07-11T11:39:34.000Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;figure class=&quot;swipe&quot;&gt;&lt;iframe src=&quot;https://www.swipe.to/embed/6724r&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;style&gt;figure.swipe{display:block;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}figure.swipe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}&lt;/style&gt;&lt;/p&gt;
+    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;figure class=&quot;swipe&quot;&gt;&lt;iframe src=&quot;https://www.swipe.to/embed/6724r&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;style&gt;figure.swipe{display:block;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}figure.swipe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}&lt;/style&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;figure class=&quot;swipe&quot;&gt;&lt;iframe src=&quot;https://www.swipe.to/embed/6724r&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;style&gt;figure.swipe{display:block;
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;figure class=&quot;swipe&quot;&gt;&lt;iframe src=&quot;https://www.swipe.to/embed/6724r&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;style&gt;figure.sw
     
     </summary>
     
@@ -152,11 +157,10 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
     <link href="http://ryan_qian.coding.me/2016/07/05/jenkins%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%BF%AB%E7%85%A7/"/>
     <id>http://ryan_qian.coding.me/2016/07/05/jenkins一键部署快照/</id>
     <published>2016-07-05T09:03:00.000Z</published>
-    <updated>2016-07-08T07:14:25.000Z</updated>
+    <updated>2016-07-11T11:39:24.000Z</updated>
     
     <content type="html">&lt;p&gt;在很久很久以前，就有人说到一键部署？什么？一键部署？什么鬼？听着好牛逼的样子，我也搞一搞，经过一段时间的折腾终于搞出来了，最后，我只想说，效率真高。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h4 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h4&gt;&lt;h5 id=&quot;安装插件&quot;&gt;&lt;a href=&quot;#安装插件&quot; class=&quot;headerlink&quot; title=&quot;安装插件&quot;&gt;&lt;/a&gt;安装插件&lt;/h5&gt;&lt;p&gt;此教程的一键部署策略需要使用Jenkins的插件 —&amp;gt; Publish Over SSH&lt;br&gt;&lt;img src=&quot;/images/1456975825490.png&quot; alt=&quot;Alt text&quot;&gt;                                      &lt;img src=&quot;/images/1456975964950.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h4 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h4&gt;&lt;h5 id=&quot;安装插件&quot;&gt;&lt;a href=&quot;#安装插件&quot; class=&quot;headerlink&quot; title=&quot;安装插件&quot;&gt;&lt;/a&gt;安装插件&lt;/h5&gt;&lt;p&gt;此教程的一键部署策略需要使用Jenkins的插件 —&amp;gt; Publish Over SSH&lt;br&gt;&lt;img src=&quot;/images/1456975825490.png&quot; alt=&quot;Alt text&quot;&gt;                                      &lt;img src=&quot;/images/1456975964950.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/images/1456996723952.png&quot; alt=&quot;Alt text&quot;&gt;        &lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/images/1456996768103.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
 &lt;p&gt;找到以后直接安装即可&lt;/p&gt;
@@ -177,8 +181,7 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
     <summary type="html">
     
       &lt;p&gt;在很久很久以前，就有人说到一键部署？什么？一键部署？什么鬼？听着好牛逼的样子，我也搞一搞，经过一段时间的折腾终于搞出来了，最后，我只想说，效率真高。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h4 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; titl
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;
     
     </summary>
     
@@ -196,9 +199,10 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
     <link href="http://ryan_qian.coding.me/2016/07/05/hello-world/"/>
     <id>http://ryan_qian.coding.me/2016/07/05/hello-world/</id>
     <published>2016-07-05T08:14:37.000Z</published>
-    <updated>2016-07-05T08:14:37.000Z</updated>
+    <updated>2016-07-11T11:38:44.000Z</updated>
     
     <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ hexo server&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -211,7 +215,7 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
     
     </summary>
     

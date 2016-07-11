@@ -362,10 +362,12 @@
 
       
         
-          
-            <p>话不多说,直接上代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</div><div class="line"><span class="keyword">import</span> java.util.Calendar;</div><div class="line"><span class="keyword">import</span> java.util.Date;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-mm-dd"</span>);</div><div class="line">		String str = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-mm-dd"</span>).format(<span class="keyword">new</span> Date());</div><div class="line">		Date dt = sdf.parse(str);</div><div class="line">		Calendar rightNow = Calendar.getInstance();</div><div class="line">		rightNow.setTime(dt);</div><div class="line">		rightNow.add(Calendar.YEAR, -<span class="number">1</span>);<span class="comment">// 日期减1年</span></div><div class="line">		rightNow.add(Calendar.MONTH, <span class="number">3</span>);<span class="comment">// 日期加3个月</span></div><div class="line">		rightNow.add(Calendar.DAY_OF_YEAR, <span class="number">10</span>);<span class="comment">// 日期加10天</span></div><div class="line">		Date dt1 = rightNow.getTime();</div><div class="line">		String reStr = sdf.format(dt1);</div><div class="line">		System.out.println(reStr);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
+          <p>话不多说,直接上代码<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/08/java如何实现时间的加减/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -482,43 +484,15 @@
 
       
         
-          
-            <h2 id="Why-Page"><a href="#Why-Page" class="headerlink" title="Why Page?"></a>Why Page?</h2><pre><code>我们为什么要做分页？
+          <h2 id="Why-Page"><a href="#Why-Page" class="headerlink" title="Why Page?"></a>Why Page?</h2><pre><code>我们为什么要做分页？
 1.前台页面有限，我们无法将所有的数据一次性显示。
 2.数据库中的数据太多，一次性查询时间较长，影响性能。
-</code></pre><h2 id="What-we-want"><a href="#What-we-want" class="headerlink" title="What we want?"></a>What we want?</h2><p><img src="http://img.blog.csdn.net/20150825175639518" alt="页数少的分页"></p>
-<p><img src="http://img.blog.csdn.net/20150825175838214" alt="一到十分页"></p>
-<p><img src="http://img.blog.csdn.net/20150825175903087" alt="n1,n1+10分页"></p>
-<p><strong>分析模型</strong></p>
-<pre><code>是不是和你想的一样呢？做成这个东东我们需要哪些条件呢？
-1.我们需要定义一页显示多少条数据，在这里定义为pageSize。
-2.我们需要知道要显示第几页的数据，在这里定义为pageNumber。
-3.我们需要定义显示页数范围的大小，在这里定义为rangeSize。
-    （上图中rangeSize为10）
-4.我们需要动态的得到具体显示页数的值，在这里定义为  List&lt;Integer&gt;  pages&lt;Integer&gt;。
-    （图一为1-4，图二为1-10，图三为5-14）
-5.如何得到pages&lt;Integer&gt;？细想一下，我们只需要知道开始页和结束页，然后将他们范围内的数进行遍历就可以了对吧。
-6.开始页如何得到？（开始页：pageStart）
-    最容易的就是图三，pageStart=pageNumber-rangeSize/2;
-    还算容易的就是图一，那就是1。
-    其实图二也很容易，也是1嘛。原因就是pageNumber&lt;rangeSize/2;
-    发现一个规律，(pageNubmer&lt;rangeSize/2)?(pageStart=1):(pageStart=pageNumber-rangSize/2)
-    用一种简单的方式表示就是pageStart=Max(0,(pageNumber-rangeSize/2))
-7.结束页如何得到?(结束页：pageEnd,数据的总条数count)
-    还是图三比较容易，pageEnd3=pageNumber+rangeSize/2-1;
-    这次图二也比较明显，pageEnd2=rangeSize;
-    图一也挺容易，pageEnd1=count/pageSize;
-    分析一下这三者的关系，pageEnd2与pageEnd3取其大，pageEnd1与pageEnd2和pageEnd3，取其小。
-    所以，
-    pageEnd=min(pageEnd1,max(pageEnd3,pageEnd2))
-    也就是        pageEnd=min(count/pageSize,max(pageNumber+rangeSize/2-1,count/pageSize))
-8.从7点我们可以看出我们来需要得到总的数据条数count；
-</code></pre><h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> Integer rangeSize=<span class="number">10</span>;</div><div class="line"><span class="keyword">public</span> Integer pageSize=<span class="number">10</span>;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 计算连续显示页的起始页码</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPageNumberStart</span><span class="params">(Integer pageNumber)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> Math.max(<span class="number">0</span>, pageNumber - rangeSize / <span class="number">2</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 计算连续显示页的结束页码</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPageNumberEnd</span><span class="params">(Integer pageNumber,Integer count)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> Math.min(Math.max(pageNumber + rangeSize / <span class="number">2</span> - <span class="number">1</span>,rangeSize),count/pageSize);</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 获得连续显示页的页码</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">getPages</span><span class="params">(Integer pageNumber,Integer count)</span> </span>&#123;</div><div class="line">	Integer startPage = <span class="keyword">this</span>.getPageNumberStart(pageNumber);</div><div class="line">	Integer endPage = <span class="keyword">this</span>.getPageNumberEnd(pageNumber,count);</div><div class="line">	List&lt;Integer&gt; pages = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = startPage + <span class="number">1</span>; i &lt;= endPage + <span class="number">1</span>; i++) &#123;</div><div class="line">		pages.add(i);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> pages;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<pre><code>此外就是页面数据的查询，根据不同的数据库有不同的查询方式，但是最好使用一种通用的不区别数据的接口。
-JPA提供的接口是十分方便的，几乎不需要我们做工作，只需要套用JPA的接口就可以了。
-</code></pre><p>详细请看JPA的文档。<br><a href="http://docs.spring.io/spring-data/jpa/docs/1.8.2.RELEASE/reference/html/%20JPA%E6%96%87%E6%A1%A3" target="_blank" rel="external">JPA官方文档</a></p>
-
-          
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/08/分页模型的分析/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -755,7 +729,8 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
       
         
           
-            <p><figure class="swipe"><iframe src="https://www.swipe.to/embed/6724r" allowfullscreen></iframe></figure><style>figure.swipe{display:block;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}figure.swipe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}</style></p>
+            <a id="more"></a>
+<p><figure class="swipe"><iframe src="https://www.swipe.to/embed/6724r" allowfullscreen></iframe></figure><style>figure.swipe{display:block;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}figure.swipe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}</style></p>
 
           
         
@@ -874,27 +849,13 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
 
       
         
-          
-            <p>在很久很久以前，就有人说到一键部署？什么？一键部署？什么鬼？听着好牛逼的样子，我也搞一搞，经过一段时间的折腾终于搞出来了，最后，我只想说，效率真高。</p>
-<hr>
-<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><h5 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h5><p>此教程的一键部署策略需要使用Jenkins的插件 —&gt; Publish Over SSH<br><img src="/images/1456975825490.png" alt="Alt text">                                      <img src="/images/1456975964950.png" alt="Alt text"></p>
-<p><img src="/images/1456996723952.png" alt="Alt text">        </p>
-<p><img src="/images/1456996768103.png" alt="Alt text"></p>
-<p>找到以后直接安装即可</p>
-<h5 id="Publish-Over-SSH-插件的配置"><a href="#Publish-Over-SSH-插件的配置" class="headerlink" title="Publish Over SSH 插件的配置"></a>Publish Over SSH 插件的配置</h5><p><img src="/images/1456975825490.png" alt="Alt text">    <img src="/images/1456996930391.png" alt="Alt text"></p>
-<p>找到有关Publish Over SSH的配置<br><img src="/images/1456997848813.png" alt="Alt text"><br>细心的话我们会发现右下角有高级配置<br><img src="/images/1456998266634.png" alt="Alt text"><br>要想知道配置是否正确，点一下Test Configuration 按钮即可</p>
-<p>搞定一大步，松一口气，ˊ&gt;ˋ ˊ&gt;ˋ ˊ&gt;ˋ</p>
-<h4 id="创建Jenkins-Item"><a href="#创建Jenkins-Item" class="headerlink" title="创建Jenkins Item"></a>创建Jenkins Item</h4><p><img src="/images/1457433656119.png" alt="Alt text"></p>
-<h4 id="配置item选项"><a href="#配置item选项" class="headerlink" title="配置item选项"></a>配置item选项</h4><p><img src="/images/1457496275535.png" alt="Alt text"><br><img src="/images/1457502524081.png" alt="Alt text"><br><img src="/images/1457502690373.png" alt="Alt text"><br><img src="/images/1457503866033.png" alt="Alt text"><br><img src="/images/1457503969298.png" alt="Alt text"><br><img src="/images/1457504219941.png" alt="Alt text"><br><img src="/images/1457577977732.png" alt="Alt text"><br><img src="/images/1457578378162.png" alt="Alt text"><br><img src="/images/1457578774188.png" alt="Alt text"><br><img src="/images/1457578948357.png" alt="Alt text"><br><img src="/images/1457580159775.png" alt="Alt text"><br><img src="/images/1457580234059.png" alt="Alt text"><br>我们首先看一下在jenkins服务器上此工程的路径及目标文件<br><img src="/images/1457580983501.png" alt="Alt text"><br><img src="/images/1457581462821.png" alt="Alt text"></p>
-<p>以下是publish.sh 脚本的具体实现，此脚本可以停掉原先的tomcat服务，并且自动重启tomcat服务器，并且可以观察到启动日志<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#defined</span></div><div class="line">TOMCAT_HOME=<span class="string">"/data/tomcat"</span></div><div class="line">TOMCAT_PORT=8080</div><div class="line">PROJECT=<span class="string">"<span class="variable">$1</span>"</span></div><div class="line"></div><div class="line"><span class="comment">#parm validate</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> <span class="_">-lt</span> 1 ]; <span class="keyword">then</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"you must use like this : ./publish.sh &lt;projectname&gt; [tomcat port] [tomcat home dir]"</span></div><div class="line">  <span class="built_in">exit</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$2</span>"</span> != <span class="string">""</span> ]; <span class="keyword">then</span></div><div class="line">	TOMCAT_PORT=<span class="variable">$2</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$3</span>"</span> != <span class="string">""</span> ]; <span class="keyword">then</span></div><div class="line">	TOMCAT_HOME=<span class="string">"<span class="variable">$3</span>"</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#tomcat shutdown</span></div><div class="line">sh  <span class="variable">$TOMCAT_HOME</span>/bin/shutdown.sh</div><div class="line"><span class="built_in">echo</span> <span class="string">"tomcat shutdown"</span></div><div class="line"></div><div class="line"></div><div class="line">tomcat_pid=`lsof -n -P -t -i :<span class="variable">$TOMCAT_PORT</span>`</div><div class="line"><span class="built_in">echo</span> <span class="string">"current tomcat_pid: "</span> <span class="variable">$tomcat_pid</span></div><div class="line"></div><div class="line">dir=$(<span class="built_in">pwd</span>)</div><div class="line"><span class="built_in">echo</span> <span class="string">"dir: "</span>  <span class="variable">$dir</span></div><div class="line"></div><div class="line"><span class="comment">#public project</span></div><div class="line">rm -rf /data/release/ROOT.war</div><div class="line">rm -rf /data/release/ROOT</div><div class="line"></div><div class="line">mv <span class="_">-f</span> /data/release/<span class="variable">$PROJECT</span>*.war  /data/release/ROOT.war</div><div class="line"></div><div class="line"><span class="string">"<span class="variable">$TOMCAT_HOME</span>"</span>/bin/startup.sh</div><div class="line"><span class="built_in">echo</span> <span class="string">"tomcat is starting "</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">log</span>Dir=<span class="string">"/data/logs/faceCheck.log"</span></div><div class="line"><span class="built_in">exec</span> tail -fn 100 <span class="string">"<span class="variable">$logDir</span>"</span></div></pre></td></tr></table></figure></p>
-<pre><code>要注意的问题
-
-&gt;1.源文件的路径问题，明白当前位置和目的文件的位置才可以更好的配置路径  
-&gt;2.注意shell脚本执行时你所在的文件路径在root的家目录，所以在写命令的时候注意加上绝对路径，或者进入目标文件夹下面再去执行命令
-</code></pre><h4 id="Only-One-Key"><a href="#Only-One-Key" class="headerlink" title="Only  One  Key"></a>Only  One  Key</h4><p><img src="/images/1457590559041.png" alt="Alt text"><br><img src="/images/1457590728133.png" alt="Alt text"><br><img src="/images/1457590813586.png" alt="Alt text"><br><img src="/images/1457590885392.png" alt="Alt text"></p>
-<pre><code>工具只是工具，思想才是灵魂
-</code></pre>
-          
+          <p>在很久很久以前，就有人说到一键部署？什么？一键部署？什么鬼？听着好牛逼的样子，我也搞一搞，经过一段时间的折腾终于搞出来了，最后，我只想说，效率真高。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/05/jenkins一键部署快照/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -992,18 +953,12 @@ JPA提供的接口是十分方便的，几乎不需要我们做工作，只需�
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/05/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
