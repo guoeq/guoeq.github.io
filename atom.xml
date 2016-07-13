@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ryan_qian.coding.me/"/>
-  <updated>2016-07-11T11:38:56.000Z</updated>
+  <updated>2016-07-13T07:09:59.000Z</updated>
   <id>http://ryan_qian.coding.me/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java Web 项目获得文件的绝对路径</title>
+    <link href="http://ryan_qian.coding.me/2016/07/13/java-Web-%E9%A1%B9%E7%9B%AE%E8%8E%B7%E5%BE%97%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/"/>
+    <id>http://ryan_qian.coding.me/2016/07/13/java-Web-项目获得文件的绝对路径/</id>
+    <published>2016-07-13T05:49:54.000Z</published>
+    <updated>2016-07-13T07:09:59.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;文件在项目中的路径&quot;&gt;&lt;a href=&quot;#文件在项目中的路径&quot; class=&quot;headerlink&quot; title=&quot;文件在项目中的路径&quot;&gt;&lt;/a&gt;文件在项目中的路径&lt;/h2&gt;&lt;h3 id=&quot;maven-项目&quot;&gt;&lt;a href=&quot;#maven-项目&quot; class=&quot;headerlink&quot; title=&quot;maven 项目&quot;&gt;&lt;/a&gt;maven 项目&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://o9xvdfsp1.bkt.clouddn.com/C145FFDA-021B-4CB6-8F08-46FAB9405B84.png&quot; alt=&quot;maven project&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如上图，maven项目的资源文件一般是放在src/main/resources目录下。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;一般的web项目&quot;&gt;&lt;a href=&quot;#一般的web项目&quot; class=&quot;headerlink&quot; title=&quot;一般的web项目&quot;&gt;&lt;/a&gt;一般的web项目&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://o9xvdfsp1.bkt.clouddn.com/QQ20160713-1@2x.png&quot; alt=&quot;web project&quot;&gt;&lt;/p&gt;
+&lt;p&gt;对于一般的web项目的资源文件一般是放在WEB-INF目录下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9xvdfsp1.bkt.clouddn.com/package.png&quot; alt=&quot;enter image description here&quot;&gt;&lt;br&gt;对于以上两种类型的web项目，其资源文件打包以后的路径是一致的，所以获取资源路径的方式也是一致的。&lt;/p&gt;
+&lt;h2 id=&quot;如何获取资源文件的路径&quot;&gt;&lt;a href=&quot;#如何获取资源文件的路径&quot; class=&quot;headerlink&quot; title=&quot;如何获取资源文件的路径&quot;&gt;&lt;/a&gt;如何获取资源文件的路径&lt;/h2&gt;&lt;h3 id=&quot;配置文件中加载资源文件&quot;&gt;&lt;a href=&quot;#配置文件中加载资源文件&quot; class=&quot;headerlink&quot; title=&quot;配置文件中加载资源文件&quot;&gt;&lt;/a&gt;配置文件中加载资源文件&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;context-param&amp;gt;
+    &amp;lt;param-name&amp;gt;contextConfigLocation&amp;lt;/param-name&amp;gt;
+    &amp;lt;param-value&amp;gt;classpath:applicationContext/applicationContext.xml&amp;lt;/param-value&amp;gt;
+&amp;lt;/context-param&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;就像在web.xml 文件中加在spring的配置文件时，只需要将资源文件的路径前面加上“classpath: “ 即可，“classpath:“ 后面的文件的路径是相对于src/main/resources  或者 WEB-INF  目录的&lt;/p&gt;
+&lt;h3 id=&quot;java类文件中获取资源文件的路径&quot;&gt;&lt;a href=&quot;#java类文件中获取资源文件的路径&quot; class=&quot;headerlink&quot; title=&quot;java类文件中获取资源文件的路径&quot;&gt;&lt;/a&gt;java类文件中获取资源文件的路径&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.io.File;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; *  web项目打包以后classes文件在磁盘中的绝对路径&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * Created by guoenqian on 16/7/13. email:guoeq@jiedaibao.com&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;WebPathUtil&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;getWebPath&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        String webPath = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        File classesFile = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; File(WebPathUtil.class.getClassLoader().getResource(&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;).getPath());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        webPath = classesFile.getParent() + File.separator + &lt;span class=&quot;string&quot;&gt;&quot;classes&quot;&lt;/span&gt; + File.separator;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; webPath;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;此方法获得web项目打包以后classes文件在磁盘中的绝对路径&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;总结：我们获得资源文件的路径的原理就是把资源文件的项目路径转化为磁盘的绝对路径，这样拿到文件的路径才是唯一并且正确的。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;文件在项目中的路径&quot;&gt;&lt;a href=&quot;#文件在项目中的路径&quot; class=&quot;headerlink&quot; title=&quot;文件在项目中的路径&quot;&gt;&lt;/a&gt;文件在项目中的路径&lt;/h2&gt;&lt;h3 id=&quot;maven-项目&quot;&gt;&lt;a href=&quot;#maven-项目&quot; class=&quot;headerlink&quot; title=&quot;maven 项目&quot;&gt;&lt;/a&gt;maven 项目&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://o9xvdfsp1.bkt.clouddn.com/C145FFDA-021B-4CB6-8F08-46FAB9405B84.png&quot; alt=&quot;maven project&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如上图，maven项目的资源文件一般是放在src/main/resources目录下。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>java如何实现时间的加减</title>
